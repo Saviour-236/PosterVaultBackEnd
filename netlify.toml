@@ -1,2 +1,7 @@
 [build]
   functions = "functions" 
+
+[dev]
+  functions = "functions"
+  targetPort = 3000
+  port = 8888

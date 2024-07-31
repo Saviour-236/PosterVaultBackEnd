@@ -12,4 +12,5 @@ router.post('/addNewPost',authorization,upload.single('image'),addPost);
 router.delete('/deletePost',authorization,deletePost);
 router.put('/updatePost',authorization,updatePost);
 
+
 export default router;
