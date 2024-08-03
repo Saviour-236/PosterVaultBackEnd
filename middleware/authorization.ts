@@ -1,7 +1,7 @@
 // middleware that authorize the routes according to the user role on behalf of their token 
 import type { Request, Response, NextFunction } from 'express';
 import jwt, {  type JwtPayload } from 'jsonwebtoken';
-const SECRET_KEY = 'tileSite';
+const SECRET_KEY = process.env.AUTH_TOKEN_SECRET_KEY as string;
 // middleware that authorize the routes according to the user role on behalf of their token
 const authorization = (req: Request, res: Response, next: NextFunction) => {
 

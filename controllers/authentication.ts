@@ -33,7 +33,7 @@ const signIn = async (req: Request, res: Response) => {
 
     // generate token
     const token = jwt.sign( { user }, 
-        process.env.AUTH_TOKEN_SECRET_KEY ,
+        process.env.AUTH_TOKEN_SECRET_KEY as string ,
         { expiresIn: '1h' }
     )
 
