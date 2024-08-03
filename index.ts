@@ -37,7 +37,9 @@ app.use('/post', postRoutes);
 app.use('/admin', authorization, adminRoutes);
 app.use('/auth', authentcationRoutes);
 
-
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+})
 
 // // Export handler for serverless function
 // export const handler = serverless(app);
