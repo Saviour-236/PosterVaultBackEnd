@@ -10,6 +10,7 @@ adminRouter.get('/checkAuth',authorization,(req:Request,res:Response)=>{
 
 //admin route 
 adminRouter.get('/', (req: Request, res: Response) => {
+    console.log('admin route');
     return res.status(200).send('admin route')
 });
 export default adminRouter;

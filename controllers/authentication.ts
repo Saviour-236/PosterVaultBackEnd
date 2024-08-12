@@ -43,8 +43,8 @@ const signIn = async (req: Request, res: Response) => {
     return res.status(200).cookie('authtoken', token, {
         httpOnly: true,
         maxAge: 3600000, // 1 hour in milliseconds
-        // secure: true, // Uncomment in production with HTTPS
-        // sameSite: 'strict', // Uncomment if you want CSRF protection
+        sameSite: 'None',
+        secure: true,
       }).json(userWithoutPassword);
 };
 

@@ -4,14 +4,14 @@ import jwt, {  type JwtPayload } from 'jsonwebtoken';
 const SECRET_KEY = process.env.AUTH_TOKEN_SECRET_KEY as string;
 // middleware that authorize the routes according to the user role on behalf of their token
 const authorization = (req: Request, res: Response, next: NextFunction) => {
-
+console.log('authorization middleware');
     // get token from cookies
     const token = req.cookies.authtoken;
-
+    console.log(req.cookies);
 
     //checking if token exist in request  cookies or not
     if (!token) {
-        return res.status(401).json({message:'not autholized please sign in first '});
+        return res.status(401).json({message:'not authorized please sign in first '});
     }
 
     // checking user is admin or not with decoding the token and also checking if token is valid or not
