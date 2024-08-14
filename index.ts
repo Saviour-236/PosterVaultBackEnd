@@ -21,7 +21,8 @@ app.use(cors({
         'http://localhost:5173',
         "https://texotiles.netlify.app"
     ],
-    credentials: true // Allow credentials (cookies, authorization headers)
+    credentials: true ,// Allow credentials (cookies, authorization headers)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 
