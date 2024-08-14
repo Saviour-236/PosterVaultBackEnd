@@ -18,11 +18,11 @@ const app = express();
 // Middleware
 app.use(cors({
     origin: [
-        'http://localhost:5173',
-        "https://texotiles.netlify.app"
+        'http://localhost:5173',            // Local development
+        'https://texotiles.netlify.app'     // Production front-end
     ],
-    credentials: true ,// Allow credentials (cookies, authorization headers)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,                     // Allow credentials (cookies, headers, etc.)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
 }));
 
 
