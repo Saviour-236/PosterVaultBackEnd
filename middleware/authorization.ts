@@ -4,10 +4,8 @@ import jwt, {  type JwtPayload } from 'jsonwebtoken';
 const SECRET_KEY = process.env.AUTH_TOKEN_SECRET_KEY as string;
 // middleware that authorize the routes according to the user role on behalf of their token
 const authorization = (req: Request, res: Response, next: NextFunction) => {
-console.log('authorization middleware');
     // get token from cookies
     const token = req.cookies.authtoken;
-    console.log(req.cookies);
 
     //checking if token exist in request  cookies or not
     if (!token) {
