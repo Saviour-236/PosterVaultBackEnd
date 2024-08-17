@@ -17,10 +17,13 @@ const addPost = async (req: Request, res: Response) => {
     const post = req.body;
     console.log("this is file " , req.file);
     const result = await uploadToCloudinary(req.file);
+    console.log("post uploaded to cloudinary and this is result as path string", result);
     post.imageUrl = result;
     const newPost = new Post(post);
     try {
+        console.log('trying to save in database');
         const savedpost = await newPost.save();
+        console.log('post saved in database');
         return res.status(200).json({ user:savedpost, message: 'post added successfully' });
     }
     catch (err:any) {
