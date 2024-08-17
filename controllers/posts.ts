@@ -24,7 +24,10 @@ const addPost = async (req: Request, res: Response) => {
         console.log('trying to save in database');
         const savedpost = await newPost.save();
         console.log('post saved in database');
-        return res.status(200).json({ user:savedpost, message: 'post added successfully' });
+
+        return res
+        .status(200)
+        .json({ user:savedpost, message: 'post added successfully' });
     }
     catch (err:any) {
         return res.status(500).json({ message: err.message });
