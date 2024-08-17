@@ -13,6 +13,7 @@ const getPosts = async (req: any, res: any) => {
     }
 }
 const addPost = async (req: Request, res: Response) => {
+    console.log("in add post controller");
     const post = req.body;
     const result = await uploadToCloudinary(req.file);
     post.imageUrl = result;
@@ -21,7 +22,7 @@ const addPost = async (req: Request, res: Response) => {
         const savedpost = await newPost.save();
         return res.status(200).json({ user:savedpost, message: 'post added successfully' });
     }
-    catch (err) {
+    catch (err:any) {
         return res.status(500).json({ message: err.message });
     }
  }

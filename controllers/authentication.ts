@@ -40,12 +40,18 @@ const signIn = async (req: Request, res: Response) => {
 
     //send token in cookies
     const {password, ...userWithoutPassword} = user._doc;
-    return res.status(200).cookie('authtoken', token, {
+    console.log(user.toObject())
+    return res
+    .status(200)
+    .cookie(
+        'authtoken', 
+        token, {
         httpOnly: true,
         maxAge: 3600000, // 1 hour in milliseconds
-        sameSite: 'None',
         secure: true,
-      }).json(userWithoutPassword);
+        sameSite: 'none',
+      })
+      .json(userWithoutPassword);
 };
 
 export {signIn, signUp}

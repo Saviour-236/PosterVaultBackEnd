@@ -12,7 +12,7 @@ const uploadToCloudinary = async (file: any) => {
             folder: 'tiles image',
         }
     )
-    return result.secure_url;
+    return(result.secure_url);
 }
 
 export default uploadToCloudinary;
