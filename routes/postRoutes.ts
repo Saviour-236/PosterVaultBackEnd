@@ -8,7 +8,7 @@ import authorization from '../middleware/authorization';
 const router = express.Router();
 
 router.get('/get',getPosts);
-router.post('/addNewPost',authorization,upload.single('image'),addPost);
+router.post('/addNewPost',authorization,addPost);
 router.delete('/deletePost',authorization,deletePost);
 router.put('/updatePost',authorization,updatePost);
 

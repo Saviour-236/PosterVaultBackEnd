@@ -14,6 +14,6 @@ import multer from 'multer';
 //     }
 //   });
 //  const upload = multer({ storage });
-const upload = multer({ dest: './public/data/uploads/' })
+const upload = multer({ dest: './public/uploads/' })
 
 export default upload;
