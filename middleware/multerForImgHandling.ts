@@ -3,7 +3,7 @@ import multer from 'multer';
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       console.log('in multer destination');
-      cb(null, '../public/uploads'); // Temporary storage directory
+      cb(null, '../public/uploads/'); // Temporary storage directory
     },
     filename: function (req, file, cb) {
       console.log('in multer destination');
@@ -14,5 +14,6 @@ const storage = multer.diskStorage({
     }
   });
  const upload = multer({ storage });
+ //const upload = multer({ dest: './public/data/uploads/' })
 
 export default upload;
