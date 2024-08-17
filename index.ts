@@ -16,14 +16,18 @@ import authentcationRoutes from './routes/authenticationRoutes';
 const app = express();
 
 // Middleware
-app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        "https://texotiles.netlify.app"
-    ],
-    credentials: true ,// Allow credentials (cookies, authorization headers)
+const corsOptions = {
+    origin: ['http://localhost:5173', 'https://texotiles.netlify.app'],
+    credentials: true, // Allow credentials (cookies, authorization headers)
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
+    allowedHeaders: ['Content-Type', 'Authorization'], // Add any other headers you might need
+};
+
+// Apply CORS globally with the specified options
+app.use(cors(corsOptions));
+
+// Handle preflight requests automatically
+app.options('*', cors(corsOptions));
 
 
 app.use(cookieParser());
