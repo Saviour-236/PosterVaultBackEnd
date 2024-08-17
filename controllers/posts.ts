@@ -15,6 +15,7 @@ const getPosts = async (req: any, res: any) => {
 const addPost = async (req: Request, res: Response) => {
     console.log("in add post controller");
     const post = req.body;
+    console.log("this is file " , req.file);
     const result = await uploadToCloudinary(req.file);
     post.imageUrl = result;
     const newPost = new Post(post);

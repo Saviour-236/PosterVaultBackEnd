@@ -6,6 +6,7 @@ const uploadToCloudinary = async (file: any) => {
         api_key: process.env.CLOUDIANRY_API_KEY,
         api_secret: process.env.CLOUDIANRY_API_SECRET // Click 'View Credentials' below to copy your API secret
     });
+    console.log('in upload to cloudinary and this is file', file);
     const result = await cloudinary.uploader.upload(file.path,
         {
             public_id: 'posts',
