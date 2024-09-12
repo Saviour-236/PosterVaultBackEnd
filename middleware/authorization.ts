@@ -4,11 +4,11 @@ import jwt, { type JwtPayload } from 'jsonwebtoken';
 const SECRET_KEY = process.env.AUTH_TOKEN_SECRET_KEY as string;
 // middleware that authorize the routes according to the user role on behalf of their token
 const authorization = (req: Request, res: Response, next: NextFunction) => {
-   // console.log('in authorization middleware');
+   //console.log('in authorization middleware');
    // console.log("cookies", req.cookies);
     // get token from cookies
     const token = req.cookies.authtoken;
-  //  console.log("this is token", token)
+  //console.log("this is token", token)
     //checking if token exist in request  cookies or not
     if (!token) {
     //   console.log('no token found in cookies');
@@ -26,7 +26,7 @@ const authorization = (req: Request, res: Response, next: NextFunction) => {
             return res.status(401).json({ message: ' only admin can access this route ' })
         }
         })
-  //  console.log('user is admin just before next');
+  //console.log('user is admin just before next');
 
     next();
 }

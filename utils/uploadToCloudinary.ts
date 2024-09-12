@@ -8,7 +8,7 @@ const uploadToCloudinary = async (file: any) => {
     });
     const result = await cloudinary.uploader.upload(file.path,
         {
-            public_id: 'posts',
+            public_id: 'posts'+file.filename,
             folder: 'tiles image',
         }
     )

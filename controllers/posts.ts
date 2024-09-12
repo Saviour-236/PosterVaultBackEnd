@@ -33,9 +33,35 @@ const addPost = async (req: Request, res: Response) => {
         return res.status(500).json({ message: err.message });
     }
  }
-const deletePost = async (req: Request, res: any) => { }
+const deletePost = async (req: Request, res: any) => { 
+
+   // Post.findByIdAndDelete(new mongoose.Types.ObjectId(req.body))
+    res.json({message:'post Deleted'});
+}
+
+
+
 const updatePost = async (req: Request, res: any) => {
-    return res.status(200).json({ message: 'post updated successfully' });
+   // console.log('in update post controller',req.body);
+    //for storing the cloudinary url
+    let data = JSON.parse(req.body.Data);
+    if(req.file){
+         data.imageUrl = await uploadToCloudinary(req.file);
+    }
+
+     try{
+       // console.log('in try block of update post controller',data);
+     // const objectId = new mongoose.Types.ObjectId(data._id);
+     //console.log(data._id);
+      //console.log('object id',objectId);
+     const updatedPost = await Post.findByIdAndUpdate( new mongoose.Types.ObjectId(data._id), data, { new: true });
+        return res.status(200).json({ message: 'post updated successfully',
+          updatedPost: updatedPost
+         });
+     }
+     catch(err:any){
+        return res.status(500).json({ message: err.message });
+     }
  }
 
 export { getPosts, addPost, deletePost, updatePost }

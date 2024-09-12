@@ -10,7 +10,7 @@ const postRouter = express.Router();
 postRouter.get('/get',getPosts);
 postRouter.post('/addNewPost',authorization,upload.single('image'),addPost);
 postRouter.delete('/deletePost',authorization,deletePost);
-postRouter.put('/updatePost',authorization,updatePost);
+postRouter.put('/updatePost',authorization,upload.single('image'),updatePost);
 
 
 export default postRouter;
