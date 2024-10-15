@@ -40,7 +40,6 @@ const signIn = async (req: Request, res: Response) => {
 
     //send token in cookies
     const {password, ...userWithoutPassword} = user._doc;
-    console.log(user.toObject())
     return res
     .status(200)
     .cookie(

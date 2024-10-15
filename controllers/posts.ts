@@ -34,8 +34,8 @@ const addPost = async (req: Request, res: Response) => {
     }
  }
 const deletePost = async (req: Request, res: any) => { 
-
-   // Post.findByIdAndDelete(new mongoose.Types.ObjectId(req.body))
+    console.log('in delete post controller');
+    await Post.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.id))
     res.json({message:'post Deleted'});
 }
 
