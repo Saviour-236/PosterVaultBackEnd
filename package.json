@@ -22,6 +22,7 @@
   "type": "module",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/bun": "latest",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
@@ -30,5 +31,9 @@
   },
   "peerDependencies": {
     "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts"
   }
 }

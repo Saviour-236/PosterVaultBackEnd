@@ -38,13 +38,12 @@ app.use(express.urlencoded({ extended: true }));
 connetDb();
 
 // Define routes
-app.use('/post', postRoutes);
-app.use('/admin', authorization, adminRoutes);
-app.use('/auth', authentcationRoutes);
+app.use('/post', postRoutes); // for post handling
+app.use('/auth', authentcationRoutes); // for authentication
+app.use('/admin',adminRoutes); // for chenking the user is admin or not
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 })
 
-// // Export handler for serverless function
-// export const handler = serverless(app);

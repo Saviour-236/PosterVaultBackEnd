@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import Post from "../modling/post_schema.ts";
+import Poster from "../modling/poster_schema.ts";
 import type { Request, Response } from 'express';
 import uploadToCloudinary from "../utils/uploadToCloudinary.ts";
-const getPosts = async (req: any, res: any) => {
+const getPosts = async (req: Request, res: Response) => {
     try {
-        const posts = await Post.find();
-        return res.status(200).json(posts);
+        const posters = await Poster.find();
+        return res.status(200).json(posters);
     }
     catch (err) {
       //  console.log('errr when fetching from database')
@@ -13,29 +13,29 @@ const getPosts = async (req: any, res: any) => {
     }
 }
 const addPost = async (req: Request, res: Response) => {
-    //console.log("in add post controller");
-    const post = req.body;
-    //console.log("this is file " , req.file);
+    // console.log("in add post controller")
+    // console.log("this is body", req.body);
     const result = await uploadToCloudinary(req.file);
-   // console.log("post uploaded to cloudinary and this is result as path string", result);
-    post.imageUrl = result;
-    const newPost = new Post(post);
+    // console.log("post uploaded to cloudinary and this is result as path string", result);
+    const poster= req.body;
+    poster.imageUrl = result;
+    const newPost = new Poster(poster);
     try {
-       // console.log('trying to save in database');
+    //    console.log('trying to save in database');
         const savedpost = await newPost.save();
-       // console.log('post saved in database');
-
+    //    console.log('post saved in database');
         return res
         .status(200)
-        .json({ user:savedpost, message: 'post added successfully' });
+        .json({ poster:savedpost, message: 'post added successfully' });
     }
     catch (err:any) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({name:err.name, message: err.message });
     }
  }
+
 const deletePost = async (req: Request, res: any) => { 
-    console.log('in delete post controller');
-    await Post.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.id))
+    // console.log('in delete post controller');
+    await Poster.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.id))
     res.json({message:'post Deleted'});
 }
 
@@ -54,7 +54,7 @@ const updatePost = async (req: Request, res: any) => {
      // const objectId = new mongoose.Types.ObjectId(data._id);
      //console.log(data._id);
       //console.log('object id',objectId);
-     const updatedPost = await Post.findByIdAndUpdate( new mongoose.Types.ObjectId(data._id), data, { new: true });
+     const updatedPost = await Poster.findByIdAndUpdate( new mongoose.Types.ObjectId(data._id), data, { new: true });
         return res.status(200).json({ message: 'post updated successfully',
           updatedPost: updatedPost
          });
