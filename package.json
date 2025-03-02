@@ -1,39 +1,44 @@
 {
-  "dependencies": {
-    "@netlify/functions": "^2.8.1",
-    "@types/multer": "^1.4.11",
-    "@types/node": "^20.14.13",
-    "@types/streamifier": "^0.1.2",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.2",
-    "cloudinary": "^2.2.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.4.5",
-    "multer": "^1.4.5-lts.1",
-    "streamifier": "^0.1.1"
-  },
-  "name": "backend-floor-tiels",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/bun": "latest",
-    "@types/cookie-parser": "^1.4.7",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6"
-  },
-  "peerDependencies": {
-    "typescript": "^4.9.5"
-  },
-  "scripts": {
-    "start": "ts-node index.ts",
-    "dev": "nodemon index.ts"
-  }
+   "dependencies": {
+   "@netlify/functions": "^2.8.1",
+   "@types/multer": "^1.4.11",
+   "@types/node": "^20.14.13",
+   "@types/streamifier": "^0.1.2",
+   "bcrypt": "^5.1.1",
+   "bcryptjs": "^2.4.3",
+   "body-parser": "^1.20.2",
+   "cloudinary": "^2.2.0",
+   "cookie-parser": "^1.4.6",
+   "cors": "^2.8.5",
+   "dotenv": "^16.4.5",
+   "express": "^4.19.2",
+   "google-auth-library": "^9.15.1",
+   "jsonwebtoken": "^9.0.2",
+   "mongoose": "^8.4.5",
+   "multer": "^1.4.5-lts.1",
+   "nodemon": "^3.1.9",
+   "passport": "^0.7.0",
+   "passport-google-oauth20": "^2.0.0",
+   "streamifier": "^0.1.1"
+   },
+   "name": "poster-vault-backend",
+   "module": "index.ts",
+   "type": "module",
+   "devDependencies": {
+   "@types/bcrypt": "^5.0.2",
+   "@types/bcryptjs": "^2.4.6",
+   "@types/bun": "latest",
+   "@types/cookie-parser": "^1.4.7",
+   "@types/cors": "^2.8.17",
+   "@types/express": "^4.17.21",
+   "@types/jsonwebtoken": "^9.0.6"
+   },
+   "peerDependencies": {
+   "typescript": "^5.8.2"
+   },
+   "scripts": {
+   "start": "bun index.ts",
+   "dev": "bun  index.ts"
+ 
+   }
 }

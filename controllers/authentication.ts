@@ -2,7 +2,8 @@ import type { Request, Response } from 'express';
 import User from '../modling/user_schema.ts';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-
+import { OAuth2Client } from "google-auth-library";
+import { errorMonitor } from 'events';
 
 // Handle sign-up controller
 const signUp = async (req: Request, res: Response) => {
@@ -64,7 +65,7 @@ const signIn = async (req: Request, res: Response) => {
 
 
     // chek  password correct or not 
-    if (! await bcrypt.compare(req.body.password, user.password)) {
+    if (! bcrypt.compare(req.body.password, user.password)) {
         return res.status(400).json({ message: ' wrong password ' })
     }
 
@@ -92,4 +93,46 @@ const signIn = async (req: Request, res: Response) => {
       .json({token:accessToken,message:"sign in successfull"});
 };
 
-export {signIn, signUp}
+const continueWithGoogle = async(req:Request,res:Response) => {
+    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    const { token } = req.body;
+    try{
+         // Verify Google ID Token
+         const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const { name, email, picture } = ticket.getPayload();
+        // check if user exist or not 
+        let user = await User.findOne({email})
+        // console.log('user',user);
+        // console.log('user',user.toObject());
+        if(!user){
+            // create new user
+            let [firstName, ...lastname] = name.split(' ');
+            // console.log('first name',firstName);
+            // console.log('last name',lastname);
+            
+            let newUser = new User({
+                firstName: name,
+                lastName: lastname.join(' '),
+                email,
+                profilePic: picture,
+            });
+            // console.log('new user',newUser);
+          const savedUser =  await newUser.save();
+        //   console.log("saved user ", savedUser);
+         const accessToken = jwt.sign({user:savedUser}, process.env.JWT_TOKEN_SECRET_KEY as string, {expiresIn:'3h'});
+        // console.log("token",accessToken);
+          return res.status(200).send('user created successfully');
+        }
+        const accessToken = jwt.sign({ user }, process.env.JWT_TOKEN_SECRET_KEY as string, {expiresIn:'3h'});
+        return res.status(200).send({token:accessToken,message:'loginned succesfully',user});        
+    }catch(err){
+        // console.log("errror in google authentication",err);
+        res.status(400).send('error in google authentication');
+    }
+}
+
+export {signIn, signUp, continueWithGoogle};
+ 

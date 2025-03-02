@@ -36,7 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Connect to the database
 connetDb();
-
+app.get('/', (req, res) => {
+  res.send('hloo m working fine');
+});
 // Define routes
 app.use('/post', postRoutes); // for post handling
 app.use('/auth', authentcationRoutes); // for authentication
