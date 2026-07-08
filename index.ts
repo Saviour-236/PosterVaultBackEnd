@@ -17,7 +17,7 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-    origin: ['http://localhost:5173', 'https://poster-vault-project-1.netlify.app'],
+    origin: ['http://localhost:5173', 'https://poster-vault-project-1.netlify.app','https://poster-vault-front-end-4el1-five.vercel.app'],
     credentials: true, // Allow credentials (cookies, authorization headers)
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   //  allowedHeaders: ['Content-Type', 'Authorization'], // Add any other headers you might need
